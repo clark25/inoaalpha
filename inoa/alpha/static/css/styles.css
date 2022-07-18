@@ -3,10 +3,42 @@
   font-weight: bold;
 }
 
+.loginLogout{
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  color: white;
+}
+
+.loginLogout p{
+  margin: 0 20px 0;
+  text-transform: capitalize;
+}
+
+main{
+  min-height: calc(100vh - 56px - 200px);
+  padding: 40px 0;
+}
+
 h1{
   color: blue;
 }
 
+form{
+  display: flex;
+  flex-direction: column;
+}
+
+form label{
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+form button{
+  margin-top: 10px;
+}
+
 footer{
   color: white;
+  height: 200px;
 }

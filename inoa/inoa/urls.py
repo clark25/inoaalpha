@@ -24,3 +24,8 @@ urlpatterns = [
     path('alpha/', include('alpha.urls')),
     path('', RedirectView.as_view(url='alpha')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+#Add Django site authentication urls (for login, logout, password management)
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+]
