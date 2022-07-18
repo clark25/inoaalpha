@@ -1,0 +1,31 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+  {% if form.errors %}
+    <p>Seu nome de usuário e/ou senha estão errados. Por favor tente novamente</p>
+  {% endif %}
+
+  {% if next %}
+    {% if user.is_authenticated %}
+      <p>Sua conta não tem permissão para acessar essa página. Para continuar, por favor realize o login com uma conta que tenha esse nível de permissão</p>
+    {% else %}
+      <p>Por favor, faça login para ver essa página</p>
+    {% endif %}
+  {% endif %}
+
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    
+    {{ form.username.label_tag }}
+    {{ form.username }}
+    
+    {{ form.password.label_tag }}
+    {{ form.password }}
+    <button type="submit" class="btn btn-dark" value="login">Login</button>
+    <input type="hidden" name="next" value="{{ next }}">
+  </form>
+
+  <p><a href="{% url 'password_reset' %}">Esqueceu a senha?</a></p>
+
+{% endblock %}
