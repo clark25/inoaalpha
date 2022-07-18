@@ -1,7 +1,12 @@
 .navbar-brand{
   text-transform: uppercase;
+  font-weight: bold;
 }
 
 h1{
   color: blue;
+}
+
+footer{
+  color: white;
 }
