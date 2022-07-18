@@ -15,7 +15,7 @@ class Acao(models.Model):
 class AcaoHistorico(models.Model):
   acao = models.ForeignKey(Acao, on_delete=models.CASCADE)
   price = models.FloatField(default=0)
-  date_price = models.DateTimeField(auto_now_add=True, blank=True)
+  date_price = models.DateTimeField('date published')
 
   def __str__(self) -> str:
     return super().__str__()
