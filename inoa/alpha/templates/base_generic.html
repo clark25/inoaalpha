@@ -28,7 +28,7 @@
               </li>
               {% if user.is_authenticated %}
                 <li class="nav-item">
-                  <a class="nav-link" href="">Minhas ações</a>
+                  <a class="{% if request.path == '/alpha/acoesusuario/' %}nav-link active{% else %}nav-link{% endif %}" href="{% url 'acao-user' %}">Minhas ações</a>
                 </li>
               {% endif %}
               <li class="nav-item">
