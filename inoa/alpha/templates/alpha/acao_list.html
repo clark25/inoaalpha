@@ -20,7 +20,7 @@
       <tbody>
         {% for acao in acao_list %}
         <tr>
-          <td class="cianame"><a href="">{{ acao.name }}</a></td>
+          <td class="cianame"><a href="{{ acao.get_absolute_url }}">{{ acao.name }}</a></td>
           <td>{{ acao.symbol }}</td>
           <td>{{ acao.last_price }}</td>
           {% if user.is_authenticated %}

@@ -3,5 +3,6 @@ from . import views
 
 urlpatterns = [
   path('', views.index, name='index'),
-  path('acao/', views.AcaoListView.as_view(), name='acao'),
+  path('acoes/', views.AcaoListView.as_view(), name='acoes'),
+  path('acao/<int:pk>', views.AcaoDetailView.as_view(), name='acao-detail'),
 ]

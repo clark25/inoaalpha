@@ -20,6 +20,19 @@ main{
   padding: 40px 0;
 }
 
+.card{
+  margin: 20px auto 0;
+  padding: 20px;
+}
+
+.card .simbolo{
+  color: red;
+}
+
+.card .valor{
+  color: green;
+}
+
 h1{
   color: #212529; 
 }

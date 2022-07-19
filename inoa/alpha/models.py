@@ -1,4 +1,7 @@
+import re
 from django.db import models
+from django.urls import reverse
+
 
 from django.contrib.auth.models import User
 
@@ -11,6 +14,9 @@ class Acao(models.Model):
 
   def __str__(self):
     return self.name
+  
+  def get_absolute_url(self):
+    return reverse('acao-detail', args=[str(self.id)])
 
 
 class AcaoHistorico(models.Model):
@@ -21,6 +27,8 @@ class AcaoHistorico(models.Model):
   def __str__(self) -> str:
     return super().__str__()
 
+  class Meta:
+    ordering = ['-date_price']
 
 class AcaoDono(models.Model):
   acao = models.ForeignKey(Acao, on_delete=models.CASCADE)
