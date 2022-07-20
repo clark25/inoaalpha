@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, render
 from multiprocessing import context
 from django.views import generic
 
-from .models import Acao
+from .models import Acao, AcaoDono
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -26,10 +26,18 @@ class AcaoDetailView(generic.DetailView):
     return render(request, 'alpha/acao_detail.html', context={'acao': acao})
 
 
+# class AcaoUserView(LoginRequiredMixin, generic.ListView):
+#   model = Acao
+#   template_name = 'alpha/acao_user.html'
+#   paginate_by = 20
+
+
 class AcaoUserView(LoginRequiredMixin, generic.ListView):
-  model = Acao
-  template_name = 'alpha/acao_user.html'
+  model = AcaoDono
   paginate_by = 20
+
+  def get_queryset(self):
+    return AcaoDono.objects.filter(owner=self.request.user)
 
 
 def about(request):

@@ -4,7 +4,7 @@
   <h1>Lista de ações que estão na carteira de <span class="username">{{user.get_username}}</span></h1>
   <p>Aqui estão todas as ações que você adicionou a sua carteira</p>
 
-  {% if acao_list %}
+  {% if acaodono_list %}
     <table class="table">
       <thead class="table-dark">
         <tr>
@@ -12,25 +12,19 @@
           <th scope="col">Símbolo</th>
           <th scope="col">Preço Atual (R$)</th>
           <th scope="col">Vender ação</th>
-
         </tr>
       </thead>
       <tbody>
-        {% for acao in acao_list %}
-          {% for item in acao.acaodono_set.all %}
-            <tr>
-              {% if item.owner == user %}
-                <td class="cianame"><a href="{{ item.acao.get_absolute_url }}">{{ item.acao.name }}</a></td>
-                <td>{{ item.acao.symbol }}</td>
-                <td>{{ item.acao.last_price }}</td>
-                <td><a class="btn btn-danger" href="">Vender</a></td>
-              {% endif %}
-            </tr>
-            
-          {% endfor %}
+        {% for dono in acaodono_list %}
+          <tr>
+            <td class="cianame"><a href="{{ dono.acao.get_absolute_url }}">{{ dono.acao.name }}</a></td>
+            <td>{{ dono.acao.symbol }}</td>
+            <td>{{ dono.acao.last_price }}</td>
+            <td><a class="btn btn-danger" href="">Vender</a></td>
+          </tr>   
         {% endfor %}
       </tbody>
-    </table>
+    </table>  
   {% else %}
     <p>Não nenhuma ação para ser listada</p>
   {% endif %}   
