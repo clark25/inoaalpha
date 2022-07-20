@@ -32,7 +32,7 @@
                 </li>
               {% endif %}
               <li class="nav-item">
-                <a class="nav-link" href="">Sobre</a>
+                <a class="{% if request.path == '/alpha/sobre/' %}nav-link active{% else %}nav-link{% endif %}" href="{% url 'about' %}">Sobre</a>
               </li>
             </ul>
           </div>

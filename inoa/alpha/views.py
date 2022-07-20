@@ -30,3 +30,7 @@ class AcaoUserView(LoginRequiredMixin, generic.ListView):
   model = Acao
   template_name = 'alpha/acao_user.html'
   paginate_by = 20
+
+
+def about(request):
+  return render(request, 'about.html')
