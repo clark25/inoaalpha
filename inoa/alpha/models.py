@@ -1,4 +1,4 @@
-import re
+
 from django.db import models
 from django.urls import reverse
 
@@ -34,7 +34,10 @@ class AcaoDono(models.Model):
   acao = models.ForeignKey(Acao, on_delete=models.CASCADE)
   owner = models.ForeignKey(User, on_delete=models.CASCADE)
   buy_price = models.FloatField(default=0)
-  date_buy = models.DateTimeField('date published')
+  date_buy = models.TimeField(auto_now_add=True, default = 'time created'),
 
   def __str__(self) -> str:
     return super().__str__()
+  
+  def get_absolute_url(self):
+    return reverse('acao-detail', args=[str(self.id)])

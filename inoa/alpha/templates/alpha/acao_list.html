@@ -5,16 +5,13 @@
   <p>Aqui estão todas as ações cadastradas no nosso sistema. Se você estiver logado poderá clicar na opção comprar, com a ação adicionada ao seu portifólio, você será avisado o melhor momento para vendê-la</p>
 
   {% if acao_list %}
-
+    <iframe name="dummyframe" id="dummyframe" style="display: none"></iframe>
     <table class="table">
       <thead class="table-dark">
         <tr>
           <th scope="col">Nome da empresa</th>
           <th scope="col">Símbolo</th>
           <th scope="col">Preço Atual (R$)</th>
-          {% if user.is_authenticated %}
-            <th scope="col">Comprar ação</th>
-          {% endif %}
         </tr>
       </thead>
       <tbody>
@@ -23,9 +20,6 @@
           <td class="cianame"><a href="{{ acao.get_absolute_url }}">{{ acao.name }}</a></td>
           <td>{{ acao.symbol }}</td>
           <td>{{ acao.last_price }}</td>
-          {% if user.is_authenticated %}
-            <td><a class="btn btn-success" href="">Comprar</a></td>
-          {% endif %}
         </tr>
         {% endfor %}
       </tbody>
