@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Add our new application
-    'alpha.apps.AlphaConfig', 
+    'alpha.apps.AlphaConfig',
+    "django_apscheduler",
 ]
 
 MIDDLEWARE = [
