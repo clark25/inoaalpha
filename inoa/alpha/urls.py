@@ -7,4 +7,6 @@ urlpatterns = [
   path('acao/<int:pk>', views.AcaoDetailView.as_view(), name='acao-detail'),
   path('acoesusuario/', views.AcaoUserView.as_view(), name='acao-user'),
   path('sobre/', views.about, name='about'),
+
+  path('acaodono/criar/', views.AcaoDonoCreate.as_view(), name='acaodono-criar'),
 ]
