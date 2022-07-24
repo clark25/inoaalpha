@@ -13,6 +13,7 @@
           <h2 class="card-title">{{ acao.name }}</h2>
           {% if user.is_authenticated %}
             <iframe name="dummyframe" id="dummyframe" style="display: none"></iframe>
+            
             <form action="/alpha/acaodono/criar/" method="post">
               {% csrf_token %}
               <input type="hidden" name="acao" value="{{ acao.id }}" required id="id_acao">
