@@ -48,4 +48,4 @@ class AcaoDono(models.Model):
   def save(self, *args, **kwargs):
     if not self.id:
       self.date_buy = datetime.now()
-      return super(AcaoHistorico, self).save(*args, **kwargs)
+      return super(AcaoDono, self).save(*args, **kwargs)

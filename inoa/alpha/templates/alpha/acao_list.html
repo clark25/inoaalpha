@@ -12,6 +12,7 @@
           <th scope="col">Nome da empresa</th>
           <th scope="col">Símbolo</th>
           <th scope="col">Preço Atual (R$)</th>
+          <th scope="col">Comprar Ação</th>
         </tr>
       </thead>
       <tbody>
@@ -20,6 +21,16 @@
           <td class="cianame"><a href="{{ acao.get_absolute_url }}">{{ acao.name }}</a></td>
           <td>{{ acao.symbol }}</td>
           <td>{{ acao.last_price }}</td>
+          <td>
+            {% if user.is_authenticated %}            
+              <form action="{% url 'acaodono-criar'%}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="id_acao" value="{{ acao.id }}">
+                <input type="hidden" name="id_price" value="{{ acao.last_price }}">
+                <input type="submit" value="Comprar" class="btn btn-success">
+              </form>
+            {% endif %}
+          </td>
         </tr>
         {% endfor %}
       </tbody>

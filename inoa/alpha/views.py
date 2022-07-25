@@ -1,7 +1,8 @@
 from pyexpat import model
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from multiprocessing import context
-from django.views import generic
+from django.views import View, generic
 
 from .models import Acao, AcaoDono
 
@@ -45,10 +46,29 @@ def about(request):
   return render(request, 'about.html')
 
 
-class AcaoDonoCreate(LoginRequiredMixin, CreateView):
-    model = AcaoDono
-    fields = ['acao', 'owner']
+#class AcaoDonoCreate(LoginRequiredMixin, CreateView):
+ #   model = AcaoDono
+#    fields = ['acao', 'owner']
 
+class CriarAcaoDono(LoginRequiredMixin,View):
+
+  def post(self, request):
+    new_acaodono = AcaoDono()
+    new_acaodono.acao = Acao.objects.get(pk=request.POST.get("id_acao"))
+    new_acaodono.owner = self.request.user
+    price = request.POST.get("id_price")
+    new_acaodono.price = float(price.replace(',','.'))
+    new_acaodono.save()
+
+    return HttpResponseRedirect("/alpha/acoesusuario/")
+
+class ApagarAcaoDono(LoginRequiredMixin, View):
+  def post(self, request):
+    acaoId = request.POST.get("id_acaodono")
+    acaoDel = AcaoDono.objects.get(id=acaoId)
+    acaoDel.delete()
+
+    return HttpResponseRedirect("/alpha/acoesusuario/")
 
 #class AuthorDelete(LoginRequiredMixin, DeleteView):
 #    model = Author

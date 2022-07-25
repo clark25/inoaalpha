@@ -20,7 +20,13 @@
             <td class="cianame"><a href="{{ dono.acao.get_absolute_url }}">{{ dono.acao.name }}</a></td>
             <td>{{ dono.acao.symbol }}</td>
             <td>{{ dono.acao.last_price }}</td>
-            <td><a class="btn btn-danger" href="">Vender</a></td>
+            <td>
+              <form action="{% url 'acaodono-delete'%}" method="post" >
+                {% csrf_token %}
+                <input type="hidden" name="id_acaodono" value="{{ dono.id }}">
+                <input type="submit" value="Vender" class="btn btn-danger">
+              </form>
+            </td>
           </tr>   
         {% endfor %}
       </tbody>
