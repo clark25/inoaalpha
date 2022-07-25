@@ -4,7 +4,7 @@ from alpha.models import AcaoHistorico, Acao
 
 def _get_acao_json(acaoSymbol):
   url = "https://api.hgbrasil.com/finance/stock_price?"
-  key = "3afdaffb"
+  key = "0306218d"
   pesquisa = acaoSymbol
 
     #https://api.hgbrasil.com/finance/stock_price?key=3afdaffb&symbol=PETR4
