@@ -23,14 +23,14 @@ class Acao(models.Model):
 class AcaoHistorico(models.Model):
   acao = models.ForeignKey(Acao, on_delete=models.CASCADE)
   price = models.FloatField(default=0)
-  date_price = models.DateTimeField('date published')
+  date_price = models.DateTimeField()
 
   def __str__(self) -> str:
     return super().__str__()
 
   def save(self, *args, **kwargs):
     if not self.id:
-      self.timestamp = datetime.now()
+      self.date_price = datetime.now()
       return super(AcaoHistorico, self).save(*args, **kwargs)
 
   class Meta:
