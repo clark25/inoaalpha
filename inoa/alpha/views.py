@@ -8,10 +8,8 @@ from .models import Acao, AcaoDono
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+import json
 
-from django.views.generic.edit import CreateView, DeleteView
-from django.urls import reverse_lazy
-from django.forms import ModelForm
 
 
 
@@ -31,7 +29,16 @@ class AcaoDetailView(generic.DetailView):
 
   def acao_datail_view(request, primary_key):
     acao = get_object_or_404(Acao, pk=primary_key)
-    return render(request, 'alpha/acao_detail.html', context={'acao': acao})
+
+    mylistraw = [10,22,33,45]
+
+    mylist = json.dumps(mylistraw)
+
+    context = {
+      'acao' : acao,
+      'mylistjson' : mylist,
+    }
+    return render(request, 'alpha/acao_detail.html', context=context)
     
 
 class AcaoUserView(LoginRequiredMixin, generic.ListView):
