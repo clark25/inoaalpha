@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Acao, AcaoHistorico, AcaoDono
+from .models import Acao, AcaoHistorico, AcaoOwner
 # Register your models here.
 class AcaoHistoricoInline(admin.TabularInline):
   """Defines format of inline AcaoHistorico insertion"""
@@ -9,7 +9,7 @@ class AcaoHistoricoInline(admin.TabularInline):
 
 class AcaoDonoInline(admin.TabularInline):
   """Defines format of inline AcaoDono insertion"""
-  model = AcaoDono
+  model = AcaoOwner
   extra = 1
 
 

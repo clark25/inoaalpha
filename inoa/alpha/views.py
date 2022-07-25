@@ -1,12 +1,14 @@
 from pyexpat import model
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from multiprocessing import context
 from django.views import generic
 
-from .models import Acao, AcaoDono
+from .models import Acao, AcaoOwner
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from django.views import View
 
 from django.views.generic.edit import CreateView, DeleteView
 from django.urls import reverse_lazy
@@ -34,21 +36,33 @@ class AcaoDetailView(generic.DetailView):
     
 
 class AcaoUserView(LoginRequiredMixin, generic.ListView):
-  model = AcaoDono
+  model = AcaoOwner
   paginate_by = 20
 
   def get_queryset(self):
-    return AcaoDono.objects.filter(owner=self.request.user)
+    return AcaoOwner.objects.filter(owner=self.request.user)
 
 
 def about(request):
   return render(request, 'about.html')
 
 
-class AcaoDonoCreate(LoginRequiredMixin, CreateView):
-    model = AcaoDono
-    fields = ['acao', 'owner']
+#class AcaoDonoCreate(LoginRequiredMixin, CreateView):
+#    model = AcaoDono
+#    fields = ['acao', 'owner', 'buy_price']
 
+class CriarAcaoDono(View):
+
+  def post(self, request):
+    acao = request.POST.get("id_acao")
+    price = request.POST.get("id_price")
+    print(acao,price)
+    return HttpResponseRedirect("/")
+
+#def AcaoDonoCreate(request):
+#  acao = request.POST.get("acao")
+#  print(acao)
+#  return HttpResponseRedirect("/")
 
 #class AuthorDelete(LoginRequiredMixin, DeleteView):
 #    model = Author
