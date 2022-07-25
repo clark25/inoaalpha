@@ -62,6 +62,13 @@ class CriarAcaoDono(LoginRequiredMixin,View):
 
     return HttpResponseRedirect("/")
 
+class ApagarAcaoDono(LoginRequiredMixin, View):
+  def post(self, request):
+    acaoId = request.POST.get("id_acaodono")
+    acaoDel = AcaoDono.objects.get(id=acaoId)
+    acaoDel.delete()
+
+    return HttpResponseRedirect("/alpha/acoesusuario/")
 
 #class AuthorDelete(LoginRequiredMixin, DeleteView):
 #    model = Author

@@ -9,4 +9,5 @@ urlpatterns = [
   path('sobre/', views.about, name='about'),
 
   path('acaodono/criar/', views.CriarAcaoDono.as_view(), name='acaodono-criar'),
+  path('acaodono/delete/', views.ApagarAcaoDono.as_view(), name='acaodono-delete'),
 ]
