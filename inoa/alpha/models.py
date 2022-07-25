@@ -33,7 +33,6 @@ class AcaoDono(models.Model):
   acao = models.ForeignKey(Acao, on_delete=models.CASCADE)
   owner = models.ForeignKey(User, on_delete=models.CASCADE)
   buy_price = models.FloatField(default=0)
-  date_buy = models.DateTimeField('date published')
 
   def __str__(self) -> str:
     return super().__str__()
