@@ -1,6 +1,7 @@
 
 from django.db import models
 from django.urls import reverse
+from datetime import datetime
 
 
 from django.contrib.auth.models import User
@@ -27,6 +28,11 @@ class AcaoHistorico(models.Model):
   def __str__(self) -> str:
     return super().__str__()
 
+  def save(self, *args, **kwargs):
+    if not self.id:
+      self.timestamp = datetime.now()
+      return super(AcaoHistorico, self).save(*args, **kwargs)
+
   class Meta:
     ordering = ['-date_price']
 
@@ -34,7 +40,6 @@ class AcaoDono(models.Model):
   acao = models.ForeignKey(Acao, on_delete=models.CASCADE)
   owner = models.ForeignKey(User, on_delete=models.CASCADE)
   buy_price = models.FloatField(default=0)
-  date_buy = models.TimeField(auto_now_add=True, default = 'time created'),
 
   def __str__(self) -> str:
     return super().__str__()
