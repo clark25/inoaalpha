@@ -21,8 +21,6 @@
             <td>{{ dono.acao.symbol }}</td>
             <td>{{ dono.acao.last_price }}</td>
             <td>
-              <iframe name="dummyframe" id="dummyframe" style="display: none"></iframe>
-            
               <form action="{% url 'acaodono-delete'%}" method="post" >
                 {% csrf_token %}
                 <input type="hidden" name="id_acaodono" value="{{ dono.id }}">

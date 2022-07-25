@@ -60,7 +60,7 @@ class CriarAcaoDono(LoginRequiredMixin,View):
     new_acaodono.price = float(price.replace(',','.'))
     new_acaodono.save()
 
-    return HttpResponseRedirect("/")
+    return HttpResponseRedirect("/alpha/acoesusuario/")
 
 class ApagarAcaoDono(LoginRequiredMixin, View):
   def post(self, request):

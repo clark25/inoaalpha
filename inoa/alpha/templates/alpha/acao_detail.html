@@ -11,10 +11,8 @@
       <div class="col-md-8">
         <div class="card-body">
           <h2 class="card-title">{{ acao.name }}</h2>
-          {% if user.is_authenticated %}
-            <iframe name="dummyframe" id="dummyframe" style="display: none"></iframe>
-            
-            <form action="{% url 'acaodono-criar'%}" method="post" target="dummyframe">
+          {% if user.is_authenticated %}            
+            <form action="{% url 'acaodono-criar'%}" method="post">
               {% csrf_token %}
               <input type="hidden" name="id_acao" value="{{ acao.id }}">
               <input type="hidden" name="id_price" value="{{ acao.last_price }}">
