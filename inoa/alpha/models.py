@@ -39,10 +39,13 @@ class AcaoHistorico(models.Model):
 class AcaoDono(models.Model):
   acao = models.ForeignKey(Acao, on_delete=models.CASCADE)
   owner = models.ForeignKey(User, on_delete=models.CASCADE)
-  buy_price = models.FloatField(default=0)
+  price = models.FloatField(default=0)
+  date_buy = models.DateTimeField()
 
   def __str__(self) -> str:
     return super().__str__()
-  
-  def get_absolute_url(self):
-    return reverse('acao-detail', args=[str(self.id)])
+
+  def save(self, *args, **kwargs):
+    if not self.id:
+      self.date_buy = datetime.now()
+      return super(AcaoHistorico, self).save(*args, **kwargs)
